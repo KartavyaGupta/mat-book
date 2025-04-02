@@ -1,0 +1,263 @@
+RESET * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 
+   Put your background color and repeating dot pattern 
+   on html, body so it fills the entire page, even when scrolled.
+*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* Use min-height if you want it to expand with content */
+  min-height: 100%;
+
+  /* Slightly off-white background */
+  background-color: #fdf6ee;
+
+  /* Lighter “skin tone” dots */
+  background-image: radial-gradient(#f3e6d7 3px, transparent 3px),
+    radial-gradient(#f3e6d7 3px, transparent 3px);
+  background-position: 0 0, 15px 15px;
+  background-size: 30px 30px;
+  background-repeat: repeat;
+
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  justify-content: center;
+}
+
+/* MAIN WRAPPER */
+.workflow-container {
+  width: 100%;
+  /* Let this grow as content expands. No fixed height. */
+  min-height: 100%;
+  position: relative;
+}
+
+/* HEADER BOX (FIXED, TOP-LEFT) */
+.header-box {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  gap: 16px;
+  z-index: 100;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* SAVE BUTTON */
+.save-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* MAIN CANVAS */
+.workflow-canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  padding-bottom: 80px;
+}
+
+/* BOTTOM CONTROLS */
+.bottom-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.undo-redo button,
+.zoom-controls button {
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.zoom-controls input[type="range"] {
+  vertical-align: middle;
+  margin: 0 5px;
+  width: 100px;
+}
+
+/* BASE NODE STYLING */
+.node {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 80px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  position: relative;
+}
+
+/* START NODE with Outer Ring */
+.start-node {
+  background-color: #5a9350;
+  box-shadow: 0 0 0 4px #fdf6ee, 0 0 0 8px #5a9350;
+}
+
+/* END NODE with Outer Ring */
+.end-node {
+  margin-top: 17px;
+  background-color: #d23f31;
+  box-shadow: 0 0 0 4px #fdf6ee, 0 0 0 8px #d23f31;
+}
+
+/* VERTICAL LINE + DOWNWARD ARROW */
+.vertical-line {
+  position: relative;
+  width: 2px;
+  background-color: #4f4f4f; /* dark gray for visibility */
+  height: 50px; /* length between items */
+  margin: 0;
+}
+
+/* The arrow tip: bigger for visibility */
+.vertical-line::after {
+  content: "";
+  position: absolute;
+  bottom: -8px; /* place arrow below the line end */
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #555; /* matches line color */
+}
+
+/* PLUS BUTTON WRAPPER */
+.plus-wrapper {
+  position: relative;
+  margin: 8px;
+  padding: 0;
+  margin-bottom: 0px;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus-button {
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  border: 2px solid #999;
+  border-radius: 50%;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* OPTIONS POPUP */
+.options-popup {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-button {
+  font-size: 14px;
+  text-align: center;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.option-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* RECTANGLE NODES */
+.rectangle-node {
+  width: 200px;
+  min-height: 60px;
+  border: 2px solid #5a9350; /* or any color */
+  border-radius: 6px;
+  background-color: #fff;
+  margin: 10px;
+  margin-bottom: 0px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rectangle-node span {
+  font-size: 16px;
+  color: #333;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-btn img { 
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}

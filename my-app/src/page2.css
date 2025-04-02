@@ -1,0 +1,284 @@
+/* WorkflowBuilderPage.css */
+
+/* --- Basic Reset / Font --- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfbf6; /* Light background for the whole page */
+}
+
+/* --- Overall Page Layout --- */
+.workflow-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Header Styles --- */
+.workflow-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fdfbf6; /* Light background for the whole page */
+}
+
+.menu-icon {
+  font-size: 1.5em;
+  margin-right: 15px;
+  cursor: pointer; /* Assuming it's clickable */
+  border: 1px solid gray;
+  padding: 5px;
+  background-color: white;
+  color: gray;
+}
+
+.workflow-header h1 {
+  margin: 0;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+/* --- Content Area Below Header --- */
+.workflow-content {
+  padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #fdfbf6; /* Match body background or slightly different */
+}
+
+/* --- Action Bar Styles --- */
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 10px; /* Add gap for wrapped items */
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  min-width: 200px; /* Prevent search from becoming too small */
+}
+
+.search-container input[type="search"] {
+  padding: 8px 30px 8px 10px; /* Space for icon */
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  color: #6c757d;
+  pointer-events: none; /* Prevent icon from interfering with input */
+}
+
+.create-button {
+  padding: 8px 15px;
+  background-color: #343a40; /* Dark background */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between icon and text */
+  white-space: nowrap; /* Prevent button text wrap */
+}
+
+.create-button:hover {
+  background-color: #23272b;
+}
+
+/* --- Table Container Styles --- */
+.workflow-table-container {
+  background-color: #fff; /* White background for the table area */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  overflow: hidden; /* Ensures border-radius clips the table */
+  border: 1px solid #e9ecef; /* Light border around table container */
+  overflow-x: auto; /* Add horizontal scroll if content overflows */
+}
+
+/* --- Table Styles --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Use fixed layout for predictable column widths */
+  min-width: 800px; /* Prevent table from becoming too narrow on small screens, adjust as needed */
+}
+
+thead {
+  background-color: #f8f9fa; /* Very light grey for header */
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  /* border-bottom: 1px solid #e9ecef; Horizontal lines */
+  vertical-align: middle; /* Align content vertically */
+  font-size: 0.9em;
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+}
+
+th {
+  font-weight: 600;
+  color: black;
+  white-space: nowrap; /* Prevent header text wrapping */
+  background-color: white;
+  border-bottom: 1px solid #fcdfc2;
+}
+
+tbody tr:hover {
+  background-color: #f1f3f5; /* Slight hover effect */
+}
+
+/* --- Column Widths (Adjust percentages as needed, ensure they sum to 100%) --- */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 20%;
+} /* Workflow Name */
+th:nth-child(2),
+td:nth-child(2) {
+  width: 7%;
+} /* ID */
+th:nth-child(3),
+td:nth-child(3) {
+  width: 20%;
+} /* Last Edited */
+th:nth-child(4),
+td:nth-child(4) {
+  width: 28%;
+} /* Description */
+th:nth-child(5),
+td:nth-child(5) {
+  width: 25%; /* Actions */
+  text-align: right; /* Align content (buttons) to the right */
+  overflow: visible; /* Override general td overflow rule for actions */
+}
+
+/* --- Actions Cell Styles --- */
+.actions-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align actions to the right */
+  gap: 8px; /* Space between action items */
+  white-space: nowrap; /* Prevent buttons from wrapping */
+  margin-left: 25px;
+}
+
+.icon-button,
+.text-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: inline-flex; /* Use inline-flex */
+  align-items: center;
+  vertical-align: middle; /* Align buttons nicely on the line */
+  font-size: 1em;
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.icon-button:disabled,
+.text-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.icon-button {
+  color: #6c757d; /* Default icon color */
+  font-size: 1.2em; /* Make icons slightly larger */
+}
+.icon-button:hover:not(:disabled) {
+  color: #343a40;
+}
+
+/* Star specific styling */
+.star-button {
+  font-size: 1.1em;
+  color: #6c757d; /* Default color for empty star */
+}
+.star-button svg {
+  /* If using react-icons */
+  vertical-align: middle;
+}
+
+/* Text Button Styles */
+.text-button {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 0.85em;
+  color: #495057;
+  white-space: nowrap; /* Ensure button text doesn't wrap */
+}
+.text-button:hover:not(:disabled) {
+  background-color: #e9ecef;
+}
+.execute-button {
+} /* Specific styles if needed */
+.edit-button {
+} /* Specific styles if needed */
+
+.more-button {
+} /* Styles for the vertical dots or download arrow */
+
+/* --- Pagination Styles --- */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 0; /* Padding top/bottom */
+  margin-top: 10px; /* Space above pagination */
+  flex-wrap: wrap; /* Allow pagination to wrap on small screens */
+}
+
+tr {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.page-button {
+  background: none;
+  border: 1px solid transparent; /* Transparent border to maintain size */
+  color: #6c757d;
+  padding: 6px 10px;
+  margin: 2px; /* Adjusted margin for wrapping */
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.page-button:hover:not([disabled]) {
+  background-color: #e9ecef;
+}
+.page-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.page-button.page-number.active {
+  background-color: #e9ecef; /* Highlight active page */
+  font-weight: bold;
+  color: #343a40;
+}
+
+.page-ellipsis {
+  padding: 6px 5px;
+  margin: 2px;
+  color: #6c757d;
+}
+
+.prev-button svg,
+.next-button svg {
+  /* If using react-icons */
+  vertical-align: middle;
+}
