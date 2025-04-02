@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+
 export default function App() {
   const [rectangles, setRectangles] = useState([]);
   const [showPopupIndex, setShowPopupIndex] = useState(-1);
@@ -127,7 +128,13 @@ export default function App() {
         </div>
         <div className="zoom-controls">
           <button>-</button>
-          <input type="range" min="0.5" max="2" step="0.1" defaultValue="1" />
+          <input
+            type="range"
+            min="0.5"
+            max="2"
+            step="0.1"
+            defaultValue="1"
+          />
           <button>+</button>
         </div>
       </div>

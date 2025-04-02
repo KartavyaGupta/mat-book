@@ -1,31 +1,23 @@
-RESET * {
+/* RESET */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* 
-   Put your background color and repeating dot pattern 
-   on html, body so it fills the entire page, even when scrolled.
-*/
+/* Background on html, body */
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
-  /* Use min-height if you want it to expand with content */
   min-height: 100%;
-
-  /* Slightly off-white background */
   background-color: #fdf6ee;
-
-  /* Lighter “skin tone” dots */
   background-image: radial-gradient(#f3e6d7 3px, transparent 3px),
     radial-gradient(#f3e6d7 3px, transparent 3px);
   background-position: 0 0, 15px 15px;
   background-size: 30px 30px;
   background-repeat: repeat;
-
   font-family: "Helvetica Neue", Arial, sans-serif;
   justify-content: center;
 }
@@ -33,7 +25,6 @@ body {
 /* MAIN WRAPPER */
 .workflow-container {
   width: 100%;
-  /* Let this grow as content expands. No fixed height. */
   min-height: 100%;
   position: relative;
 }
@@ -43,7 +34,7 @@ body {
   position: fixed;
   top: 20px;
   left: 20px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent */
   border: 1px solid #eee;
   border-radius: 6px;
   display: flex;
@@ -111,16 +102,18 @@ body {
   height: 32px;
   cursor: pointer;
   font-size: 16px;
-  background-color: white;
   justify-content: center;
   align-items: center;
   display: inline-flex;
+  background-color: white;
 }
 
 .zoom-controls input[type="range"] {
   vertical-align: middle;
   margin: 0 5px;
   width: 100px;
+  color: gray;
+  background-color: gray;
 }
 
 /* BASE NODE STYLING */
@@ -183,7 +176,7 @@ body {
 .plus-button {
   width: 32px;
   height: 32px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8); /* semi transparent*/
   border: 2px solid #999;
   border-radius: 50%;
   color: #000;
@@ -201,7 +194,7 @@ body {
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent */
   border-radius: 20px;
   padding: 10px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -228,9 +221,9 @@ body {
 .rectangle-node {
   width: 200px;
   min-height: 60px;
-  border: 2px solid #5a9350; /* or any color */
+  border: 2px solid #5a9350;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent */
   margin: 10px;
   margin-bottom: 0px;
   padding: 10px 14px;
@@ -256,7 +249,7 @@ body {
   align-items: center;
 }
 
-.delete-btn img { 
+.delete-btn img {
   width: 30px;
   height: 30px;
   object-fit: contain;
